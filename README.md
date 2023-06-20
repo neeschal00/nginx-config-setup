@@ -25,10 +25,35 @@ docker exec -it fc4f1fdbc2b4d44fb083301a837abddcaf1985778de7f28cb2ebbbcc02a36551
 
 NGINX cmds
 
-```
-nginx -v
-```
+Service cmds
 
 ```
-nginx -V
+service nginx start | stop
 ```
+
+version and detailed version information
+
+```
+nginx -v | -V
+```
+
+Test configuration is ok or not
+
+```
+nginx -t | -T
+```
+
+nginx help
+
+```
+nginx -h
+```
+
+"-s" flag for signals to perform actions such as start/stop, restart
+
+```
+nginx -s stop
+```
+
+- Notes related to nginx
+  You can access the images, containers with their file dir assuming linux inst from docker extension in vscode
