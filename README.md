@@ -55,5 +55,25 @@ nginx -h
 nginx -s stop
 ```
 
+In docker with volumes you can map the local dir to img container
+
+```
+volumes:
+      - ./html/:/usr/share/nginx/html #mapping the current html path to container path
+
+```
+
+Building img where we placed our file from current dir directly into the container dir read dockerfile
+
+```
+docker build -t webserver .
+```
+
+After the image is built with updating the container html file with our own we can create a new container out of it and run
+
+```
+>docker run -it --rm -d -p 8080:80 --name web webserver #where web is container name and webserver is image name from above
+```
+
 - Notes related to nginx
   You can access the images, containers with their file dir assuming linux inst from docker extension in vscode
