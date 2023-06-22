@@ -75,5 +75,55 @@ After the image is built with updating the container html file with our own we c
 >docker run -it --rm -d -p 8080:80 --name web webserver #where web is container name and webserver is image name from above
 ```
 
+Docker navigate what processes are running within a container named "web" which was created from above cmd
+
+```
+docker top web
+```
+
+We can view the master and worker process labels from above cmd. i.e. because by default nginx spawns one master process with four worker processes.
+
+![plot](./images/Capture.PNG)
+
+The below package is added which is a linux package to navigate the running process
+
+```
+RUN apt-get update && apt-get install -y procps
+```
+
 - Notes related to nginx
   You can access the images, containers with their file dir assuming linux inst from docker extension in vscode
+
+The below cmd displays all the running process with procps linux lib
+
+```
+ps -C nginx -f
+```
+Seen in CLI from above cmd
+UID        PID  PPID  C STIME TTY          TIME CMD
+root         1     0  0 10:54 pts/0    00:00:00 nginx: master process nginx -g daemon off;
+nginx       30     1  0 10:54 pts/0    00:00:00 nginx: worker process
+nginx       31     1  0 10:54 pts/0    00:00:00 nginx: worker process
+nginx       32     1  0 10:54 pts/0    00:00:00 nginx: worker process
+nginx       33     1  0 10:54 pts/0    00:00:00 nginx: worker process
+nginx       34     1  0 10:54 pts/0    00:00:00 nginx: worker process
+nginx       35     1  0 10:54 pts/0    00:00:00 nginx: worker process
+nginx       36     1  0 10:54 pts/0    00:00:00 nginx: worker process
+nginx       37     1  0 10:54 pts/0    00:00:00 nginx: worker process
+
+- Master process controls the startup and shutdown or worker processes.
+- Worker Process process the requests/serve connections.
+- OS deliver the request using sockets to the worker processes.
+
+One can view the worker processes in etc/nginx/nginx.conf
+which means the 1024 connections can be handled by the worker connection that can changed acc. to traffic.
+
+```
+events {
+    worker_connections  1024;
+}
+```
+
+Typically worker processes are assigned based on the cpu cores available i.e. detected with auto;
+
+- #access_log  /var/log/nginx/host.access.log
