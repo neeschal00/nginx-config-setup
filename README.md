@@ -100,6 +100,8 @@ The below cmd displays all the running process with procps linux lib
 ps -C nginx -f
 ```
 Seen in CLI from above cmd
+
+
 UID        PID  PPID  C STIME TTY          TIME CMD
 root         1     0  0 10:54 pts/0    00:00:00 nginx: master process nginx -g daemon off;
 nginx       30     1  0 10:54 pts/0    00:00:00 nginx: worker process
@@ -122,6 +124,14 @@ which means the 1024 connections can be handled by the worker connection that ca
 events {
     worker_connections  1024;
 }
+```
+
+in the "etc/nginx/conf.d/default.conf" it consists of the configurations that needs to be updated acc. to docker file you can change root or index file as per your req.
+```
+location / {
+        root   /usr/share/nginx/html/main;
+        index  index.html index.htm;
+    }
 ```
 
 Typically worker processes are assigned based on the cpu cores available i.e. detected with auto;
