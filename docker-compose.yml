@@ -5,7 +5,8 @@ services:
     build:
       context: ./nginx/ #since docker file is within nginx and config that way
     ports:
-      - 8000:80
+      - 80:80
     volumes:
       - ./nginx/html/:/usr/share/nginx/html #mapping the current html path to container path should be based on this file path
+      - ./nginx/conf.d/:/etc/nginx/conf.d #mapping the configuration directory
 
