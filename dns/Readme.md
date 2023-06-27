@@ -15,7 +15,7 @@ zone "master.com" IN {
 ```
 
 - master.com settings
-
+the file should end with a new line character
 ```
 $ttl 86400
 @   IN   SOA ns.master.com. hostmaster.master.com.(
@@ -29,9 +29,15 @@ ns  IN  A   127.0.0.1
 
 ```
 
-- Name Server lookup cmd to check the hostname's ip
-After the necessary settings are set with zone for dns hit below F
+- Name Server lookup cmd to check the hostname's ip in container shell
+After the necessary settings are set with zone for dns hit below 
 ```
 nslookup ns.master.com 
 ```
+To dig up more detail
+```
+dig @127.0.0.11 ns.master.com
+```
+
+
 
