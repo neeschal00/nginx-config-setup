@@ -10,3 +10,14 @@ services:
       - ./nginx/html/:/usr/share/nginx/html #mapping the current html path to container path should be based on this file path
       - ./nginx/conf.d/:/etc/nginx/conf.d #mapping the configuration directory
 
+  dns:
+    build: 
+      context: ./dns/
+    restart: always
+    ports:
+      - 53:53 #because DNS servers listen on port 53 for queries from DNS clients
+      - 53:53/udp
+    volumes:
+      - ./dns/named.conf:/etc/bind/named.conf
+      - ./dns/zone/:/etc/bind/zone/
+    command: named -c /etc/bind/named.conf -g -u named

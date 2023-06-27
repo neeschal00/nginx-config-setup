@@ -134,6 +134,18 @@ location / {
     }
 ```
 
+
+MINIMAL setup with local dns server for configuring locally.
+- Overview:
+Use of openrc in alpine based distro and service along with Dockerfile is created accordingly.
+```
+ports:
+      - 53:53 #because DNS servers listen on port 53 for queries from DNS clients
+      - 53:53/udp
+```
+
+
+
 Typically worker processes are assigned based on the cpu cores available i.e. detected with auto;
 
 - #access_log  /var/log/nginx/host.access.log
