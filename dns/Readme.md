@@ -43,5 +43,12 @@ To dig up more detail
 dig @127.0.0.11 ns.master.com
 ```
 
+While running those above commands it didn't respond with expected output.
+when running below command in dns container it displayed it was stopped 
+```
+service named status
+```
+
+And when trying to start the system it responded with permission denied which brings us to guess of needing the sudo or root access for setting things up while running the dns setup
 
 
