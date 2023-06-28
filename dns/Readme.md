@@ -5,6 +5,9 @@
 - Create dockerfile with alpine and openrc for dns configuration to use as a service
 Checkout the dockerfile
 
+- OpenRC is an init system in linux. 
+An init system is the first program, other than the kernel, to be run after a Linux distribution is booted. It is a daemon process that continues running until the system is shut down
+
 - named.conf
 the configuration for domain which will be mapped in service of dock-compose
 ```
@@ -16,6 +19,7 @@ zone "master.com" IN {
 
 - master.com settings
 the file should end with a new line character
+SOA == Start of auth with domain name
 ```
 $ttl 86400
 @   IN   SOA ns.master.com. hostmaster.master.com.(

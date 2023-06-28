@@ -15,7 +15,7 @@ services:
       context: ./dns/
     restart: always
     ports:
-      - 53:53 #because DNS servers listen on port 53 for queries from DNS clients
+      - 53:53
       - 53:53/udp
     volumes:
       - ./dns/named.conf:/etc/bind/named.conf
