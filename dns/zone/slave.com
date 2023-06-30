@@ -7,4 +7,4 @@ $TTL 86400
                     3600)    ; Negative Cache TTL
 
 @       IN      NS      ns.slave.com.
-ns      IN      A       127.0.0.11
+ns      IN      A       127.0.0.1

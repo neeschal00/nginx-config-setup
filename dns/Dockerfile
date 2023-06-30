@@ -1,5 +1,16 @@
 FROM alpine:latest
-USER root
-# Openrc is service manager; is the init system 
-RUN apk add bind openrc 
-RUN rc-update -u named
+
+# Install bind and OpenRC
+RUN apk add --no-cache bind openrc
+
+# Create the /run/openrc directory
+RUN mkdir -p /run/openrc
+
+# Create the softlevel file
+RUN touch /run/openrc/softlevel
+
+# Update the named service runlevel
+RUN rc-update add named default
+
+# Start OpenRC services
+CMD ["/sbin/init"]
