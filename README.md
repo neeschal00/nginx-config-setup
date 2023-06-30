@@ -149,3 +149,7 @@ ports:
 Typically worker processes are assigned based on the cpu cores available i.e. detected with auto;
 
 - #access_log  /var/log/nginx/host.access.log
+
+
+### Set Your DNS server ip to 127.0.0.1
+![plot](./images/ipv4dns.PNG)

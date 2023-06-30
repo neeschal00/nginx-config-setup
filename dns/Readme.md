@@ -51,4 +51,9 @@ service named status
 
 And when trying to start the system it responded with permission denied which brings us to guess of needing the sudo or root access for setting things up while running the dns setup
 
+But upon looking up on things closely it was discovered that 
+/etc/resolv.conf file, which is responsible for DNS resolution configuration on your system in the dns container
+was using nameserver 127.0.0.11 which is default in case of docker container 
 
+so inorder to solve the issue I added the volume with resolv.conf 
+with nameserver 127.0.0.1 to update and use it as dns server
